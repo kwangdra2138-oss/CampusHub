@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources | CampusHub</title>
+    <style>
+        /* This page uses a PINK/ROSE gradient theme */
+        :root {
+            --primary-grad: linear-gradient(135deg, #ff9a9e 0%, #fbc2eb 100%);
+            --deep-purple: #e77695;
+            --soft-lilac: #9d50bb;
+            --white: #ffffff;
+            --off-white: #fff9fa;
+            --text-main: #4a1a2a;
+            --link-color: #e77695;
+            --shadow: 0 10px 30px rgba(231, 118, 149, 0.1);
+        }
+
+        /* FULL CSS REPEATED FOR CONSISTENCY */
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; margin: 0; background-color: var(--off-white); color: var(--text-main); }
+        
+        nav { 
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(12px); 
+            height: 70px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 0 8%; 
+            position: sticky; 
+            top: 0; 
+            z-index: 2000; 
+            border-bottom: 1px solid #eee; 
+        }
+
+        .logo { 
+            font-weight: 800; font-size: 1.5rem; 
+            background: var(--primary-grad); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            text-decoration: none; 
+        }
+
+        .nav-links { list-style: none; display: flex; gap: 25px; margin: 0; }
+        .nav-links a { text-decoration: none; color: #666; font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--soft-lilac); }
+
+        .tab-bar { 
+            background: #fff; 
+            display: flex; 
+            justify-content: center; 
+            padding: 12px 0; 
+            position: sticky; 
+            top: 70px; 
+            z-index: 1000; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03); 
+        }
+
+        .tab-item { 
+            padding: 8px 18px; margin: 0 8px; 
+            background: #fff0f3; color: var(--deep-purple); 
+            text-decoration: none; border-radius: 50px; 
+            font-size: 0.85rem; font-weight: 600; 
+            transition: 0.3s; border: 1px solid #ffe4e9; 
+            white-space: nowrap; 
+        }
+        .tab-item:hover { background: var(--primary-grad); color: white; transform: translateY(-2px); }
+
+        header { 
+            background: var(--primary-grad); color: white; 
+            padding: 100px 20px; text-align: center; 
+            clip-path: ellipse(150% 100% at 50% 0%); 
+        }
+        header h1 { font-size: 3.2rem; margin: 0; }
+
+        .container { max-width: 1100px; margin: -50px auto 60px; padding: 0 20px; }
+        
+        section { 
+            background: var(--white); 
+            border-radius: 25px; 
+            padding: 40px; 
+            margin-bottom: 40px; 
+            box-shadow: var(--shadow); 
+            border: 1px solid #ffeef1; 
+        }
+
+        h2 { color: var(--deep-purple); font-size: 2rem; margin-top: 0; }
+        
+        .image-box { 
+            width: 100%; height: 350px; 
+            border-radius: 18px; margin-bottom: 25px; 
+            overflow: hidden; background-color: #ffe4e9; 
+        }
+        .image-box img { width: 100%; height: 100%; object-fit: cover; }
+
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 25px 0; }
+        .info-card { background: #fffafa; padding: 20px; border-radius: 15px; border-left: 5px solid var(--deep-purple); }
+
+        .more-info-link { 
+            display: inline-block; 
+            margin-top: 15px; 
+            color: var(--link-color); 
+            text-decoration: none; 
+            font-weight: 700; 
+            transition: 0.3s; 
+        }
+        .more-info-link:hover { text-decoration: underline; transform: translateX(5px); }
+
+        footer { background: #2e0b16; color: #dbadb7; text-align: center; padding: 60px 20px; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">CAMPUS HUB</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="features.html">Academics</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="contact.html">Support</a></li>
+        </ul>
+    </nav>
+
+    <div class="tab-bar">
+        <a href="#professional" class="tab-item">Professional Growth</a>
+        <a href="#creative" class="tab-item">Creative Tools</a>
+    </div>
+
+    <header>
+        <h1>Student Resources</h1>
+        <p>Unlock the tools you need for success beyond the classroom.</p>
+    </header>
+
+    <div class="container">
+
+        <section id="professional">
+            <div class="image-box">
+                <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=1200" alt="Career Growth">
+            </div>
+            <h2>Career Development</h2>
+            <p>Ready to start your career? Use these industry-standard platforms to find internships and network with alumni.</p>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <strong>Networking</strong>
+                    <p>Build your professional profile and connect with employers.</p>
+                    <a href="https://www.linkedin.com" target="_blank" class="more-info-link">Join LinkedIn →</a>
+                </div>
+                <div class="info-card">
+                    <strong>Internship Finder</strong>
+                    <p>The #1 site for students to find jobs and career events.</p>
+                    <a href="https://www.joinhandshake.com" target="_blank" class="more-info-link">Visit Handshake →</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="creative">
+            <div class="image-box">
+                <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=1200" alt="Software Tools">
+            </div>
+            <h2>Creative & Design Software</h2>
+            <p>Students get exclusive access and discounts to powerful creative suites for design, video editing, and photography.</p>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <strong>Adobe Suite</strong>
+                    <p>Industry-standard tools like Photoshop, Illustrator, and Premiere Pro.</p>
+                    <a href="https://www.adobe.com/creativecloud/buy/students.html" target="_blank" class="more-info-link">Student Discount →</a>
+                </div>
+                <div class="info-card">
+                    <strong>Canva for Education</strong>
+                    <p>Create stunning presentations and posters quickly for free.</p>
+                    <a href="https://www.canva.com" target="_blank" class="more-info-link">Open Canva →</a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 CampusHub Resources. <br> 
+        Equipping you with the right tools for a brighter future.</p>
+    </footer>
+
+</body>
+</html>
+        

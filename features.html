@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academics | CampusHub</title>
+    <style>
+        /* This page uses a BLUE gradient theme */
+        :root {
+            --primary-grad: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            --deep-purple: #2575fc;
+            --soft-lilac: #6a11cb;
+            --white: #ffffff;
+            --off-white: #f0f4ff;
+            --text-main: #1a2a4a;
+            --link-color: #2575fc;
+            --shadow: 0 10px 30px rgba(37, 117, 252, 0.1);
+        }
+        
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; margin: 0; background-color: var(--off-white); color: var(--text-main); }
+        nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); height: 70px; display: flex; justify-content: space-between; align-items: center; padding: 0 8%; position: sticky; top: 0; z-index: 2000; border-bottom: 1px solid #eee; }
+        .logo { font-weight: 800; font-size: 1.5rem; background: var(--primary-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
+        .nav-links { list-style: none; display: flex; gap: 25px; margin: 0; }
+        .nav-links a { text-decoration: none; color: #666; font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--soft-lilac); }
+        .tab-bar { background: #fff; display: flex; justify-content: center; padding: 12px 0; position: sticky; top: 70px; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.03); overflow-x: auto; }
+        .tab-item { padding: 8px 18px; margin: 0 8px; background: #f3f0ff; color: var(--deep-purple); text-decoration: none; border-radius: 50px; font-size: 0.85rem; font-weight: 600; transition: 0.3s; border: 1px solid #e9e4ff; white-space: nowrap; }
+        .tab-item:hover { background: var(--primary-grad); color: white; transform: translateY(-2px); }
+        header { background: var(--primary-grad); color: white; padding: 100px 20px; text-align: center; clip-path: ellipse(150% 100% at 50% 0%); }
+        header h1 { font-size: 3.2rem; margin: 0; }
+        .container { max-width: 1100px; margin: -50px auto 60px; padding: 0 20px; }
+        section { background: var(--white); border-radius: 25px; padding: 40px; margin-bottom: 40px; box-shadow: var(--shadow); border: 1px solid #f0edff; }
+        h2 { color: var(--deep-purple); font-size: 2rem; margin-top: 0; }
+        .image-box { width: 100%; height: 350px; border-radius: 18px; margin-bottom: 25px; overflow: hidden; background-color: #e9e4ff; }
+        .image-box img { width: 100%; height: 100%; object-fit: cover; }
+        .more-info-link { display: inline-block; margin-top: 15px; color: var(--link-color); text-decoration: none; font-weight: 700; transition: 0.3s; }
+        footer { background: #1a0b2e; color: #bfaedb; text-align: center; padding: 60px 20px; }
+
+        /* --- ADDED ACADEMIC OVERVIEW CARDS --- */
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 25px; }
+        .info-card { background: #f8f9fa; padding: 20px; border-radius: 15px; border: 1px solid #e9e4ff; transition: 0.3s; }
+        .info-card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(37, 117, 252, 0.05); }
+        .info-card h3 { color: var(--soft-lilac); margin-top: 0; font-size: 1.2rem; }
+        .info-card p { font-size: 0.9rem; color: #555; line-height: 1.5; margin-bottom: 0; }
+
+        /* --- GPA TRACKER SECTION STYLE EXTENSIONS --- */
+        .gpa-table { width: 100%; border-collapse: collapse; margin: 20px 0; text-align: left; }
+        .gpa-table th, .gpa-table td { padding: 12px 15px; border-bottom: 1px solid #e9e4ff; }
+        .gpa-table th { color: var(--text-main); font-weight: 700; }
+        .gpa-table input, .gpa-table select { width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 8px; font-family: inherit; color: var(--text-main); box-sizing: border-box; background-color: #fff; }
+        .gpa-table input:focus, .gpa-table select:focus { outline: none; border-color: var(--deep-purple); box-shadow: 0 0 5px rgba(37, 117, 252, 0.2); }
+        .btn { background: var(--primary-grad); color: white; border: none; padding: 12px 24px; font-weight: 600; border-radius: 50px; cursor: pointer; transition: 0.3s; margin-top: 10px; font-family: inherit; }
+        .btn:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 5px 15px rgba(37, 117, 252, 0.2); }
+        .btn-danger { background: #ff4d4d; color: white; padding: 8px 14px; font-weight: 600; font-size: 0.8rem; border-radius: 8px; border: none; cursor: pointer; transition: 0.2s; }
+        .btn-danger:hover { background: #e03333; }
+        .gpa-summary { display: flex; justify-content: space-between; align-items: center; background: #f8f9fa; padding: 25px; border-radius: 20px; margin-top: 30px; border: 1px solid #e9e4ff; }
+        .gpa-display { font-size: 2.5rem; font-weight: 800; background: var(--primary-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0; }
+        .gpa-display span { font-size: 1.2rem; color: #666; font-weight: 400; -webkit-text-fill-color: #666; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">CAMPUS HUB</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="features.html">Academics</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="contact.html">Support</a></li>
+        </ul>
+    </nav>
+    <div class="tab-bar">
+        <a href="#overview" class="tab-item">Academic Overview</a>
+        <a href="#catalog" class="tab-item">Course Catalog</a>
+        <a href="#gpa" class="tab-item">GPA Tracker</a>
+    </div>
+    <header>
+        <h1>Academics</h1>
+        <p>Explore courses and track your grades.</p>
+    </header>
+    <div class="container">
+        
+        <section id="overview">
+            <h2>Academic Excellence</h2>
+            <p>Welcome to your central learning terminal. Staying on top of your semester responsibilities requires clear visibility over degree components, enrollment goals, and milestones.</p>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>Credit Milestones</h3>
+                    <p>Track your progression cleanly. Most standard undergraduate degrees require 120 total credits, translating roughly into a recommended 15 credits per term to finish in four years.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Weight Distribution</h3>
+                    <p>Understanding how your final syllabus is parsed out makes calculating targets straightforward. Always weigh structural benchmarks like midterms and research logs alongside daily participation.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Honor Standings</h3>
+                    <p>Keep milestones in focus. Maintain a cumulative GPA above 3.50 for Dean's List eligibility, and aim towards high distinctions like Cum Laude thresholds (3.50–3.69), Magna (3.70–3.89), or Summa (3.90+).</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="catalog">
+            <div class="image-box"><img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=1200"></div>
+            <h2>Course Catalog</h2>
+            <p>Access thousands of academic resources from top institutions.</p>
+            <a href="https://ocw.mit.edu" target="_blank" class="more-info-link">Visit MIT CourseWare →</a>
+        </section>
+
+        <section id="gpa">
+            <h2>GPA Tracker</h2>
+            <p>Input your semester courses, credit hours, and expected grades to instantly assess your performance.</p>
+            
+            <table class="gpa-table">
+                <thead>
+                    <tr>
+                        <th style="width: 50%;">Course Name</th>
+                        <th style="width: 20%;">Credits</th>
+                        <th style="width: 20%;">Grade</th>
+                        <th style="width: 10%;">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="course-rows">
+                    <tr>
+                        <td><input type="text" placeholder="e.g., Introduction to Computer Science" class="course-name"></td>
+                        <td><input type="number" placeholder="Credits" class="course-credits" min="0" max="10" value="3" oninput="calculateGPA()"></td>
+                        <td>
+                            <select class="course-grade" onchange="calculateGPA()">
+                                <option value="4.0">A</option>
+                                <option value="3.0">B</option>
+                                <option value="2.0">C</option>
+                                <option value="1.0">D</option>
+                                <option value="0.0">F</option>
+                            </select>
+                        </td>
+                        <td><button class="btn-danger" onclick="deleteRow(this)">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <button class="btn" onclick="addRow()">+ Add Course</button>
+
+            <div class="gpa-summary">
+                <div>
+                    <h3 style="margin: 0 0 5px 0; color: var(--text-main);">Semester Breakdown</h3>
+                    <p style="margin: 0; color: #666;" id="total-credits-text">Total Credits: 3</p>
+                </div>
+                <div>
+                    <p class="gpa-display" id="gpa-output">4.00 <span>/ 4.00</span></p>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer><p>&copy; 2026 CampusHub Academics</p></footer>
+
+    <script>
+        function addRow() {
+            const tbody = document.getElementById('course-rows');
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td><input type="text" placeholder="e.g., Course Name" class="course-name"></td>
+                <td><input type="number" placeholder="Credits" class="course-credits" min="0" max="10" value="3" oninput="calculateGPA()"></td>
+                <td>
+                    <select class="course-grade" onchange="calculateGPA()">
+                        <option value="4.0">A</option>
+                        <option value="3.0">B</option>
+                        <option value="2.0">C</option>
+                        <option value="1.0">D</option>
+                        <option value="0.0">F</option>
+                    </select>
+                </td>
+                <td><button class="btn-danger" onclick="deleteRow(this)">Delete</button></td>
+            `;
+            tbody.appendChild(row);
+            calculateGPA();
+        }
+
+        function deleteRow(button) {
+            const row = button.parentElement.parentElement;
+            row.remove();
+            calculateGPA();
+        }
+
+        function calculateGPA() {
+            const creditsElements = document.querySelectorAll('.course-credits');
+            const gradeElements = document.querySelectorAll('.course-grade');
+            
+            let totalCredits = 0;
+            let totalPoints = 0;
+
+            for (let i = 0; i < creditsElements.length; i++) {
+                const credits = parseFloat(creditsElements[i].value) || 0;
+                const gradeValue = parseFloat(gradeElements[i].value);
+
+                if (credits > 0) {
+                    totalCredits += credits;
+                    totalPoints += (credits * gradeValue);
+                }
+            }
+
+            const gpaOutput = document.getElementById('gpa-output');
+            const totalCreditsText = document.getElementById('total-credits-text');
+
+            totalCreditsText.textContent = `Total Credits: ${totalCredits}`;
+
+            if (totalCredits === 0) {
+                gpaOutput.innerHTML = `0.00 <span>/ 4.00</span>`;
+            } else {
+                const finalGPA = (totalPoints / totalCredits).toFixed(2);
+                gpaOutput.innerHTML = `${finalGPA} <span>/ 4.00</span>`;
+            }
+        }
+
+        window.onload = calculateGPA;
+    </script>
+</body>
+</html>

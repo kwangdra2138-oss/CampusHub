@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Success Hub</title>
+    <style>
+        :root {
+            /* Muted Pastel Palette from reference image */
+            --bg-soft: #fdfaf6;
+            --white-glass: rgba(255, 255, 255, 0.65);
+            --text-main: #4a4a4a;
+            --text-muted: #888;
+            
+            /* Modernized, highly desaturated tones based on referenced image */
+            --blue-soft: #d1e3fa; /* Soft muted blue */
+            --sage-soft: #d4eadd; /* Pale muted green */
+            --peach-soft: #fce1d4; /* Gentle peach/orange */
+            
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            --blue-accent: #2a4d7d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-soft);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            scroll-behavior: smooth;
+        }
+
+        /* Main Hub Wrapper - Glass Effect from image_0.png */
+        .hub-wrapper {
+            width: 100%;
+            max-width: 1000px;
+            background: var(--white-glass);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(255,255,255,0.4);
+            overflow: hidden;
+            animation: fadeInHub 0.8s ease;
+        }
+
+        @keyframes fadeInHub {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 30px 40px 30px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        header h1 {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 2.2rem;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            margin-top: 10px;
+            font-size: 1.1rem;
+        }
+
+        /* Tabs Styling - Muted colors based on image_0.png */
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.4);
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            border: none;
+            padding: 14px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.9rem;
+            color: #555;
+            background: #f0f0f0;
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        /* Unique Soft Active Colors per referenced image */
+        .tab-btn[data-target="academics"].active { background: var(--blue-soft); color: #2a4d7d; }
+        .tab-btn[data-target="financial"].active { background: var(--sage-soft); color: #3d5a49; }
+        .tab-btn[data-target="wellness"].active { background: var(--peach-soft); color: #7d4d2a; }
+
+        /* Content Area and Grid for Resource Cards */
+        .content-section {
+            display: none;
+            padding: 40px;
+            animation: fadeInSection 0.5s ease;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeInSection {
+            from { opacity: 0; filter: blur(5px); }
+            to { opacity: 1; filter: blur(0); }
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .resource-card {
+            padding: 30px;
+            border-radius: 18px;
+            background: #ffffff;
+            border: 1px solid #f2f2f2;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.06);
+        }
+
+        .resource-card h3 {
+            margin-top: 10px;
+            color: #333;
+            font-size: 1.3rem;
+            letter-spacing: -0.3px;
+        }
+
+        .resource-card p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        /* Section Tags */
+        .tag {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-bottom: 10px;
+            width: fit-content;
+        }
+
+        .tag-blue { background: var(--blue-soft); color: #2a4d7d; }
+        .tag-sage { background: var(--sage-soft); color: #3d5a49; }
+        .tag-peach { background: var(--peach-soft); color: #7d4d2a; }
+
+        /* Specific modernized buttons matching style in referenced image */
+        .book-btn {
+            display: block;
+            text-align: center;
+            padding: 12px 20px;
+            background-color: var(--blue-accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+
+        .book-btn:hover {
+            opacity: 0.85;
+            transform: scale(1.02);
+        }
+
+        /* External Link Bubble Area */
+        .additional-links {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .additional-links h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .link-bubble {
+            display: inline-block;
+            padding: 8px 18px;
+            background: #ffffff;
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.85rem;
+            margin: 0 10px 10px 0;
+            transition: 0.2s;
+            border: 1px solid #e2e2e2;
+        }
+
+        .link-bubble:hover {
+            background: #fcfcfc;
+            transform: scale(1.05);
+            border-color: #d2d2d2;
+        }
+
+        /* Interactive Map Section with something added (Buildings List) */
+        #reservation-zone {
+            padding: 40px;
+            background: rgba(255,255,255,0.4);
+            border-top: 1px solid #f0f0f0;
+            text-align: center;
+        }
+
+        #reservation-zone h3 { font-size: 1.5rem; margin-bottom: 10px; }
+
+        /* The stylized building list that is part of the 'interactive map' */
+        .building-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+            text-align: left;
+        }
+
+        .building-item {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .building-item h5 { font-size: 1rem; color: #333; margin-bottom: 5px; }
+        .building-item p { font-size: 0.8rem; color: #777; margin-bottom: 15px; }
+        
+        /* Map specific book button, peach to match wellness/active section */
+        .reserve-btn {
+            background-color: var(--peach-soft);
+            color: #7d4d2a;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: 0.2s;
+        }
+
+        .reserve-btn:hover { background-color: #fbd9c5; }
+
+    </style>
+</head>
+<body>
+
+<div class="hub-wrapper">
+    <header>
+        <h1>Student Success Hub</h1>
+        <p>A soft guide to university life.</p>
+    </header>
+
+    <nav class="tab-container">
+        <button class="tab-btn active" data-target="academics">Academics</button>
+        <button class="tab-btn" data-target="financial">Financial Aid</button>
+        <button class="tab-btn" data-target="wellness">Wellness & Health</button>
+    </nav>
+
+    <div id="academics" class="content-section active">
+        <div class="resource-grid">
+            <div class="resource-card">
+                <span class="tag tag-blue">Tutoring</span>
+                <h3>Learning Center</h3>
+                <p>Connect with top peer mentors for help in math, science, and writing.</p>
+                <a href="https://calendly.com" target="_blank" class="book-btn">Book Tutoring →</a>
+            </div>
+            <div class="resource-card">
+                <span class="tag tag-blue">Library</span>
+                <h3>Digital Library</h3>
+                <p>Access millions of journals or reserve quiet study pods for finals.</p>
+                <a href="#reservation-zone" class="book-btn">Reserve Space ↓</a>
+            </div>
+        </div>
+        
+        <div class="additional-links">
+            <h4>Featured Learning Tools</h4>
+            <a href="https://www.khanacademy.org" target="_blank" class="link-bubble">Khan Academy (Free Courses)</a>
+            <a href="https://scholar.google.com" target="_blank" class="link-bubble">Google Scholar (Research)</a>
+            <a href="https://www.grammarly.com" target="_blank" class="link-bubble">Grammarly (Writing Help)</a>
+        </div>
+    </div>
+
+    <div id="financial" class="content-section">
+        <div class="resource-grid">
+            <div class="resource-card">
+                <span class="tag tag-sage">Funding</span>
+                <h3>Grant Application Portal</h3>
+                <p>Manage scholarship applications and submit required FAFSA documents.</p>
+                <a href="https://studentaid.gov" target="_blank" class="book-btn">Manage Aid →</a>
+            </div>
+            <div class="resource-card">
+                <span class="tag tag-sage">Budget</span>
+                <h3>Student Budgeting Tool</h3>
+                <p>Plan your expenses, track loan disbursement, and view deadlines.</p>
+                <a href="#" class="book-btn">Access Tool →</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="wellness" class="content-section">
+        <div class="resource-grid">
+            <div class="resource-card">
+                <span class="tag tag-peach">Mindset</span>
+                <h3>Counseling Services</h3>
+                <p>Confidential peer counseling and professional support sessions are available.</p>
+                <a href="https://www.talkcampus.com" target="_blank" class="book-btn">Get Support →</a>
+            </div>
+            <div class="resource-card">
+                <span class="tag tag-peach">Activity</span>
+                <h3>Campus Fitness Schedule</h3>
+                <p>Check gym hours, view group class times, and register for programs.</p>
+                <a href="#" class="book-btn">View Schedule →</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="reservation-zone">
+        <h3>Study Pod Reservations</h3>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">Select a building to view available pods.</p>
+        
+        <div class="building-grid">
+            <div class="building-item">
+                <div>
+                    <h5>Main Library</h5>
+                    <p>Building 100 • 3 Available Pods</p>
+                </div>
+                <button class="reserve-btn">Book North Pod</button>
+            </div>
+            <div class="building-item">
+                <div>
+                    <h5>Student Center</h5>
+                    <p>Building 210 • 1 Available Pod</p>
+                </div>
+                <button class="reserve-btn">Book Pod C</button>
+            </div>
+            <div class="building-item">
+                <div>
+                    <h5>Science Hall</h5>
+                    <p>Building 305 • 5 Available Pods</p>
+                </div>
+                <button class="reserve-btn">Book Ground Floor Pod</button>
+            </div>
+            <div class="building-item">
+                <div>
+                    <h5>Academic Union</h5>
+                    <p>Building 400 • Level 3 Pods Full</p>
+                </div>
+                <button class="reserve-btn" style="background:#eee;color:#aaa;cursor:not-allowed;">View Waiting List</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // Tab Switching Logic
+    const tabs = document.querySelectorAll('.tab-btn');
+    const sections = document.querySelectorAll('.content-section');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Remove active classes from all buttons and sections
+            tabs.forEach(t => t.classList.remove('active'));
+            sections.forEach(s => s.classList.remove('active'));
+
+            // Add active class to clicked button and corresponding section
+            tab.classList.add('active');
+            const target = tab.getAttribute('data-target');
+            document.getElementById(target).classList.add('active');
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+/* Color Palette: Light Purple and White */
+:root {
+    --primary-gradient: linear-gradient(135deg, #9d50bb 0%, #6e48aa 100%);
+    --light-purple: #f3e8ff;
+    --soft-white: #ffffff;
+    --text-color: #4a3b5a;
+    --accent-purple: #8b5cf6;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    color: var(--text-color);
+    background-color: #faf9ff; /* Very slight purple tint to white */
+}
+
+/* --- GRADIENT NAVIGATION BAR --- */
+nav {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 15px rgba(157, 80, 187, 0.1);
+    border-bottom: 2px solid #ede9fe;
+}
+
+.logo {
+    font-weight: 800;
+    font-size: 1.6rem;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #6b7280;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--accent-purple);
+    transform: translateY(-2px);
+}
+
+/* --- GRADIENT HERO HEADER --- */
+header {
+    background: var(--primary-gradient);
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+    clip-path: ellipse(150% 100% at 50% 0%); /* Stylish curved bottom */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 3.5rem;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* --- CONTENT SECTIONS --- */
+.container {
+    max-width: 1000px;
+    margin: -40px auto 40px; /* Pulls content up into the header slightly */
+    padding: 0 20px;
+}
+
+section {
+    background: var(--soft-white);
+    margin-bottom: 30px;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(109, 40, 217, 0.05);
+    border: 1px solid #f5f3ff;
+}
+
+h2 {
+    color: #5b21b6;
+    margin-top: 0;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Sub-info with subtle gradient background */
+.info-area {
+    background: linear-gradient(to right, #fdfaff, #f5f3ff);
+    border-left: 5px solid var(--accent-purple);
+    padding: 25px;
+    border-radius: 12px;
+    margin-top: 20px;
+    color: #555;
+}
+
+/* --- GRADIENT FOOTER --- */
+footer {
+    text-align: center;
+    padding: 60px;
+    background: #1f1135; /* Darker purple-black for contrast */
+    color: #e9d5ff;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Desktop spacing */
+@media (max-width: 768px) {
+    header h1 { font-size: 2.5rem; }
+    .nav-links { display: none; } /* Standard for mobile simplicity */
+}
