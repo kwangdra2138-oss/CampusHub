@@ -41,7 +41,6 @@
             border-bottom: 1px solid #eee;
         }
 
-        /* CSS styled text logo to mimic an exported design */
         .logo-link {
             font-size: 1.6rem; 
             font-weight: 800; 
@@ -53,18 +52,42 @@
             transition: transform 0.3s ease;
         }
 
-        .logo-link:hover {
-            transform: scale(1.03);
-        }
+        .logo-link:hover { transform: scale(1.03); }
+        .logo-accent { color: var(--deep-purple); -webkit-text-fill-color: var(--deep-purple); }
 
-        .logo-accent {
-            color: var(--deep-purple); 
-            -webkit-text-fill-color: var(--deep-purple);
-        }
-
-        .nav-links { list-style: none; display: flex; gap: 25px; margin: 0; }
+        .nav-right { display: flex; align-items: center; gap: 30px; }
+        .nav-links { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; }
         .nav-links a { text-decoration: none; color: #666; font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
         .nav-links a:hover { color: var(--soft-lilac); }
+
+        /* Navigation Action Buttons Group */
+        .nav-auth-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            text-decoration: none;
+            padding: 8px 18px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+
+        .btn-signin {
+            border: 2px solid var(--soft-lilac);
+            color: var(--soft-lilac);
+        }
+        .btn-signin:hover { background: var(--soft-lilac); color: white; }
+
+        .btn-signup {
+            background: var(--primary-grad);
+            color: white;
+            box-shadow: 0 4px 12px rgba(157, 80, 187, 0.15);
+        }
+        .btn-signup:hover { opacity: 0.9; transform: translateY(-1px); }
 
         /* --- TAB BAR --- */
         .tab-bar {
@@ -99,6 +122,7 @@
         }
 
         header h1 { font-size: 3.2rem; margin: 0; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); }
+        header p { font-size: 1.1rem; margin: 10px 0 0; opacity: 0.9; }
 
         /* --- CONTENT --- */
         .container { max-width: 1100px; margin: -50px auto 60px; padding: 0 20px; }
@@ -165,9 +189,12 @@
 
         footer { background: #1a0b2e; color: #bfaedb; text-align: center; padding: 60px 20px; }
 
+        @media (max-width: 992px) {
+            .nav-links { display: none; }
+        }
+
         @media (max-width: 768px) {
             header h1 { font-size: 2.2rem; }
-            .nav-links { display: none; }
             .image-box { height: 220px; }
         }
     </style>
@@ -178,12 +205,18 @@
         <a href="index.html" class="logo-link">
             CAMPUS<span class="logo-accent">HUB</span>
         </a>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="features.html">Academics</a></li>
-            <li><a href="resources.html">Resources</a></li>
-            <li><a href="contact.html">Support</a></li>
-        </ul>
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html">Academics</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="contact.html">Support</a></li>
+            </ul>
+            <div class="nav-auth-group">
+                <a href="login.html" class="nav-btn btn-signin">Sign In</a>
+                <a href="register.html" class="nav-btn btn-signup">Register</a>
+            </div>
+        </div>
     </nav>
 
     <div class="tab-bar">
